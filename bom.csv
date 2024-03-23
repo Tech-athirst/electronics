@@ -1,0 +1,7 @@
+﻿Name,Quantity,Component
+"U1",1," Arduino Uno R3"
+"DIST1",1," Ultrasonic Distance Sensor (4-pin)"
+"SEN1",1," Soil Moisture Sensor"
+"R1",1,"220 Ω Resistor"
+"SERVO1",1,"Positional Micro Servo"
+"Digit1",1,"Cathode 7 Segment Display"

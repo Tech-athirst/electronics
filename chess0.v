@@ -174,68 +174,74 @@ module ram(
                 if(i==16)
                     memory[i] = 8;// h2
                 if(i==49)  
-                    memory[i] = 9;//a7
+                    memory[i] = 17;//a7
                 if(i==50)
-                    memory[i] = 10;// b7
+                    memory[i] = 19;// b7
                 if(i==51)
-                    memory[i] = 11;//c7     
+                    memory[i] = 19;//c7     
                 if(i==52)   
-                    memory[i] = 12;//d7
+                    memory[i] = 20;//d7
                 if(i==53)
-                    memory[i] = 13;//e7
+                    memory[i] = 21;//e7
                 if(i==54)
-                    memory[i] = 14;//f7
+                    memory[i] = 22;//f7
                 if(i==55)
-                    memory[i] = 15;//g7
+                    memory[i] = 23;//g7
                 if(i==56)
-                    memory[i] = 16;//h7
+                    memory[i] = 24;//h7
                 if(i==1)
-                    memory[i] = 23;//a1 rook
+                    memory[i] = 13;//a1 rook
                 if(i==8)
-                    memory[i] = 24;//h1 rook
+                    memory[i] = 14;//h1 rook
                 if(i==2)
-                    memory[i] = 15;//b1 knight
+                    memory[i] = 9;//b1 knight
                 if(i==7)
-                    memory[i] = 16;//g8 knight
+                    memory[i] = 10;//g8 knight
                 if(i==3)
-                    memory[i] = 19;//c1 bishop
+                    memory[i] = 11;//c1 bishop
                 if(i==6)
-                    memory[i] = 20;//f1 bishop   
+                    memory[i] = 12;//f1 bishop   
                 if(i==4)
-                    memory[i] = 27;//d1 queen
+                    memory[i] = 15;//d1 queen
                 if(i==5)
-                    memory[i] = 29;//e1 king
+                    memory[i] = 16;//e1 king
 
 
                 if(i==57)
-                    memory[i] = 25;//a8 rook
+                    memory[i] = 29;//a8 rook
                 if(i==64)
-                    memory[i] = 26;//h8 rook
+                    memory[i] = 30;//h8 rook
                 if(i==58)
-                    memory[i] = 17;//b8 knight
+                    memory[i] = 25;//b8 knight
                 if(i==63)
-                    memory[i] = 18;//g8 knight
+                    memory[i] = 26;//g8 knight
                 if(i==59)
-                    memory[i] = 21;//c8 bishop
+                    memory[i] = 27;//c8 bishop
                 if(i==62)
-                    memory[i] = 22;//f8 bishop   
+                    memory[i] = 28;//f8 bishop   
                 if(i==60)
-                    memory[i] = 28;//d8 queen
+                    memory[i] = 31;//d8 queen
                 if(i==61)
-                    memory[i] = 30;//e8 king
+                    memory[i] = 32;//e8 king
             else
                 memory[i] = 0; // Initialize other cells to 0
           
              }
         
     end 
-    always @(posedge clk) begin
+    always @(posedge clk) 
+    begin
         if (en) begin
-            if (rw) begin // Write operation
+            if (rw) 
+            begin // Write operation
                 memory[adress] <= data_in;
-            end else begin // Read operation
+            end 
+            else 
+            begin // Read operation
                 data_out <= memory[adress];
             end
         end
     end
 endmodule
+module legal_rook(clk, reset, en, rw, data_in, adress, data_out);
+    

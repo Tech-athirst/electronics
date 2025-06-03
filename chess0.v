@@ -17,20 +17,6 @@ module tff (
         if (t)
             q <= ~q;
 endmodule
-module jkff (
-    input clk,
-    input j, k,
-    output reg q
-);
-    always @(posedge clk) begin
-        case ({j, k})
-            2'b00: q <= q;     // No change
-            2'b01: q <= 0;     // Reset
-            2'b10: q <= 1;     // Set
-            2'b11: q <= ~q;    // Toggle
-        endcase
-    end
-endmodule
 module srff (
     input clk,
     input s, r,
@@ -170,60 +156,76 @@ module ram(
     initial begin
         for(int i=1; i <= 64; i = i + 1) 
              {
-                if(i==8)
-                    memory[i] = 5'b00001; //a2
+              
                 if(i==9)
-                memory[i] = 5'b00010; //b2          
-                if(i==2)
-                    memory[i] = 5'b00001; //c2
-                 if(i==10)
-                    memory[i] = 5'b00011; //d2
-                if(i==11)
-                    memory[i] = 5'b00100;//e2
+                    memory[i] = 1; //a2          
+                if(i==10)
+                    memory[i] = 2; //b2
+                 if(i==11)
+                    memory[i] = 3; //c2
                 if(i==12)
-                    memory[i] = 5'b00101;//f2
+                    memory[i] = 4;//d2
                 if(i==13)
-                    memory[i] = 5'b00110;//g2
+                    memory[i] = 5;//e2
                 if(i==14)
-                    memory[i] = 5'b00111;//h2
+                    memory[i] = 6;//f2
                 if(i==15)
-                    memory[i] = 5'b01000;
+                    memory[i] = 7;//g2
+                if(i==16)
+                    memory[i] = 8;// h2
                 if(i==49)  
-                    memory[i] = 5'b01001;
+                    memory[i] = 9;//a7
                 if(i==50)
-                    memory[i] = 5'b01010;
+                    memory[i] = 10;// b7
                 if(i==51)
-                    memory[i] = 5'b01011;        
+                    memory[i] = 11;//c7     
                 if(i==52)   
-                    memory[i] = 5'b01100;
+                    memory[i] = 12;//d7
                 if(i==53)
-                    memory[i] = 5'b01101;
+                    memory[i] = 13;//e7
                 if(i==54)
-                    memory[i] = 5'b01110;
+                    memory[i] = 14;//f7
                 if(i==55)
-                    memory[i] = 5'b01111;
+                    memory[i] = 15;//g7
                 if(i==56)
-                    memory[i] = 5'b10000;
+                    memory[i] = 16;//h7
                 if(i==1)
-                    memory[i] = 5'b10111;//a1 rook
+                    memory[i] = 23;//a1 rook
                 if(i==8)
-                    memory[i] = 5'b11000;//a8 rook
+                    memory[i] = 24;//h1 rook
                 if(i==2)
-                    memory[i] = 5'b10110;//b1 knight
+                    memory[i] = 15;//b1 knight
                 if(i==7)
-                    memory[i] = 5'b01111;//b8 knight
+                    memory[i] = 16;//g8 knight
                 if(i==3)
-                    memory[i] = 5'b10000;//c1 bishop
+                    memory[i] = 19;//c1 bishop
                 if(i==6)
-                    memory[i] = 5'b11010;//c8 bishop   
+                    memory[i] = 20;//f1 bishop   
                 if(i==4)
-                    memory[i] = 5'b10100;//d1 queen
+                    memory[i] = 27;//d1 queen
                 if(i==5)
-                    memory[i] = 5'b10011;//e1 king
-           
-                
+                    memory[i] = 29;//e1 king
 
-                
+
+                if(i==57)
+                    memory[i] = 25;//a8 rook
+                if(i==64)
+                    memory[i] = 26;//h8 rook
+                if(i==58)
+                    memory[i] = 17;//b8 knight
+                if(i==63)
+                    memory[i] = 18;//g8 knight
+                if(i==59)
+                    memory[i] = 21;//c8 bishop
+                if(i==62)
+                    memory[i] = 22;//f8 bishop   
+                if(i==60)
+                    memory[i] = 28;//d8 queen
+                if(i==61)
+                    memory[i] = 30;//e8 king
+            else
+                memory[i] = 0; // Initialize other cells to 0
+          
              }
         
     end 

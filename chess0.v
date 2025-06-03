@@ -160,3 +160,80 @@ module mux8to1(
     mux4to1 m2(e, f, g, h, sel0, sel1, efgh);
     mux2to1 m3(abcd, efgh, sel2, out);
 endmodule
+module ram(
+    input clk,rw,en,
+    input[4,0] data_in,
+    input[5,0] adress,
+    output reg[4,0] data_out
+    );
+    reg[4,0] memory[63:0]; // 64x5 RAM
+    initial begin
+        for(int i=1; i <= 64; i = i + 1) 
+             {
+                if(i==8)
+                    memory[i] = 5'b00001; //a2
+                if(i==9)
+                memory[i] = 5'b00010; //b2          
+                if(i==2)
+                    memory[i] = 5'b00001; //c2
+                 if(i==10)
+                    memory[i] = 5'b00011; //d2
+                if(i==11)
+                    memory[i] = 5'b00100;//e2
+                if(i==12)
+                    memory[i] = 5'b00101;//f2
+                if(i==13)
+                    memory[i] = 5'b00110;//g2
+                if(i==14)
+                    memory[i] = 5'b00111;//h2
+                if(i==15)
+                    memory[i] = 5'b01000;
+                if(i==49)  
+                    memory[i] = 5'b01001;
+                if(i==50)
+                    memory[i] = 5'b01010;
+                if(i==51)
+                    memory[i] = 5'b01011;        
+                if(i==52)   
+                    memory[i] = 5'b01100;
+                if(i==53)
+                    memory[i] = 5'b01101;
+                if(i==54)
+                    memory[i] = 5'b01110;
+                if(i==55)
+                    memory[i] = 5'b01111;
+                if(i==56)
+                    memory[i] = 5'b10000;
+                if(i==1)
+                    memory[i] = 5'b10111;//a1 rook
+                if(i==8)
+                    memory[i] = 5'b11000;//a8 rook
+                if(i==2)
+                    memory[i] = 5'b10110;//b1 knight
+                if(i==7)
+                    memory[i] = 5'b01111;//b8 knight
+                if(i==3)
+                    memory[i] = 5'b10000;//c1 bishop
+                if(i==6)
+                    memory[i] = 5'b11010;//c8 bishop   
+                if(i==4)
+                    memory[i] = 5'b10100;//d1 queen
+                if(i==5)
+                    memory[i] = 5'b10011;//e1 king
+           
+                
+
+                
+             }
+        
+    end 
+    always @(posedge clk) begin
+        if (en) begin
+            if (rw) begin // Write operation
+                memory[adress] <= data_in;
+            end else begin // Read operation
+                data_out <= memory[adress];
+            end
+        end
+    end
+endmodule

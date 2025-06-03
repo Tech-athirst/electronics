@@ -146,14 +146,37 @@ module mux8to1(
     mux4to1 m2(e, f, g, h, sel0, sel1, efgh);
     mux2to1 m3(abcd, efgh, sel2, out);
 endmodule
+// module ram(
+//     input clk,rw,en,
+//     input[4,0] data_in,
+//     input[5,0] adress,
+//     output reg[4,0] data_out
+//     );
+//     reg[4,0] memory[63:0]; // 64x5 RAM
+//     always @(posedge clk) 
+//     begin
+//         if (en) begin
+//             if (rw) 
+//             begin // Write operation
+//                 memory[adress] <= data_in;
+//             end 
+//             else 
+//             begin // Read operation
+//                 data_out <= memory[adress];
+//             end
+//         end
+//     end
+// endmodule
 module ram(
     input clk,rw,en,
     input[4,0] data_in,
     input[5,0] adress,
-    output reg[4,0] data_out
+   // output reg[4,0] data_out
     );
+    
     reg[4,0] memory[63:0]; // 64x5 RAM
     initial begin
+       
         for(int i=1; i <= 64; i = i + 1) 
              {
               
@@ -224,10 +247,8 @@ module ram(
                 if(i==61)
                     memory[i] = 32;//e8 king
             else
-                memory[i] = 0; // Initialize other cells to 0
-          
-             }
-        
+                memory[i] = 0;
+              } // Initialize other cells to 0
     end 
     always @(posedge clk) 
     begin
@@ -243,5 +264,47 @@ module ram(
         end
     end
 endmodule
-module legal_rook(clk, reset, en, rw, data_in, adress, data_out);
+module main_ram(
+    input clk,rw,
+    input[4:0] data_in,
+    input[5:0] adress,
+    output reg[4:0] data_out 
+
+);
+    wire [4:0] data_out_wire;
+    ram r1(
+        .clk(clk),
+        .rw(rw),
+        .data_in(data_in),
+        .adress(adress),
+        .data_out(data_out_wire)
+    );
     
+    always @(posedge clk) begin
+        data_out <= data_out_wire;
+    end
+endmodule
+
+
+module legal_rook(
+    input clk,
+    input [4:0] data_in,
+    output reg [4:0] data_out,
+
+);
+wire [4:0]  data_out;
+reg [4:0] data_out_rook;
+
+always @(*) begin 
+    {
+        
+        for(int j=1;j<=64;j++)
+        {
+            if(data_out[i]>=17)
+            
+           
+        }
+    }
+    
+end
+endmodule

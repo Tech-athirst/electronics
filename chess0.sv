@@ -227,7 +227,7 @@ module ram(
                 if(i==4)
                     memory[i] = 15;//d1 queen
                 if(i==5)
-                    memory[i] = 16;//e1 king
+                    memory[i] = 16;//e1  king
 
 
                 if(i==57)

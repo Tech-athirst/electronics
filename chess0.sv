@@ -16,7 +16,7 @@ module tff (
     always @(posedge clk)
         if (t)
             q <= ~q;
-endmodule
+endmodule 
 module srff (
     input clk,
     input s, r,

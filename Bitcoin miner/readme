@@ -1,0 +1,27 @@
+🧩 Bitcoin Miner — Gate-Level Implementation
+A gate-level educational prototype of a SHA-256 Bitcoin miner designed in Logisim.
+The project demonstrates how digital hashing hardware operates at the fundamental logic-gate level.
+⚙️ Project Overview
+This system performs the SHA-256 hashing process used in Bitcoin mining, constructed primarily from 2-input logic gates and essential structural blocks (multiplexers, registers, flip-flops, etc.).
+While the muxes and registers are used as standard Logisim components for simplicity, they represent circuits that are easily buildable using NAND, NOR, and other basic gates — meaning the design still qualifies as gate-level logic in concept.
+🧮 Technical Summary
+Specification
+Details
+Design Level
+Gate-Level (with standard MUX/Register blocks)
+Technology Used
+Logisim (Digital Circuit Simulator)
+Total 2-Input Logic Gates
+≈ 50,000 – 60,000
+Clock Cycles per Hash
+≈ 500 – 600
+Optimization Potential
+Can be reduced using pipelined buffers between A, B, C,… calculations
+⚠️ Logisim does not allow fine-grained pipelining or buffering between intermediate SHA-256 stages.
+In a hardware description language (HDL) or FPGA, clock cycles can be greatly reduced by inserting registers at key stages.
+🧱 Gate-Level Note
+Although the internal structures of MUXes and registers are not manually drawn gate-by-gate in this project,
+they are conceptually simple and can be recreated using:
+MUX → 3 × 2-input gates per bit (Y = (A & ¬S) | (B & S))
+D-Flip-Flop / Register → built from NAND/NOR latches (≈ 8 gates per bit)
+This means that the entire miner could be expanded into fully discrete gate-level form if desired.
